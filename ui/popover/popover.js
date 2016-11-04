@@ -1,3 +1,9 @@
+/**
+ *
+ * @author hry_588@163.com
+ * 
+ */
+
 define(function(require, exports, module) {
 
 	'use strict';
@@ -101,42 +107,24 @@ define(function(require, exports, module) {
 
 	module.exports = popover;
 
-	// $('#left').on('click', function() {
-	// 	var pop = new popover('#left', {
-
-	// 	});
-
-	// 	$('#close').on('click', function() {
-	// 		//pop = new popover('#left');
-	// 		pop.close()
-
-	// 	})
-	// })
-
-
 	//根据业务自己封装
 	//点击显示与隐藏
-	// $.fn.popover = function() {
-	// 	var slef = this,
-	// 		pop = null;
-	// 	slef.attr('ispopover', 'false');
+	$.fn.popover = function(options) {
+		var slef = this;
+		slef.attr('ispopover', 'false');
+		slef.each(function(index, item) {
+			var pop = [];
+			$(item).on('click.ui-popover', function() {
+				var _this = $(this);
+				if (_this.attr('ispopover') == 'false') {
+					pop[index] = new popover(_this, options);
+					_this.attr('ispopover', 'true');
+					return
+				}
+				pop[index].close();
+				_this.attr('ispopover', 'false');
 
-	// 	slef.click(function() {
-	// 		var _this = $(this);
-
-	// 		if (_this.attr('ispopover') == 'false') {
-
-	// 			pop = new popover(_this);
-
-	// 			_this.attr('ispopover', 'true');
-
-	// 		} else {
-
-	// 			pop.close();
-
-	// 			_this.attr('ispopover', 'false');
-	// 		}
-	// 	})
-	// }
-	// $('#left').popover();
+			})
+		})
+	}
 })

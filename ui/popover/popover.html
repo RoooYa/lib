@@ -30,7 +30,19 @@
 		<div class="ui-popover-ft"></div>
 	</div> -->
 
-	<button id="left" style="width: 100px; height: 150px;border:0;position: absolute;left:200px;top:100px">
+	<button class="left" style="width: 100px; height: 150px;border:0;">
+		确定
+	</button>
+
+	<button class="left" style="width: 100px; height: 150px;border:0;">
+		确定
+	</button>
+
+	<button class="left" style="width: 100px; height: 150px;border:0;">
+		确定
+	</button>
+
+	<button class="left" style="width: 100px; height: 150px;border:0;">
 		确定
 	</button>
 
@@ -41,7 +53,9 @@
 	<script src="/app.js"></script>
 	<script>
 		require(['ui/popover/popover'], function(popover) {
-			new popover('#left');
+			$('.left').popover({
+				title: '123'
+			});
 		});
 	</script>
 </body>

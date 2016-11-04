@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <link href="/time/calendar/calendar.css" rel="stylesheet">
+    <style type="text/css">
+    	html {
+	font: 500 14px 'roboto';
+	color: #333;
+	background-color: #fafafa;
+}
+a {
+	text-decoration: none;
+}
+ul, ol, li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#demo {
+	width: 300px;
+	margin: 150px auto;
+}
+p {
+	margin: 0;
+}
+#dt {
+	height: 28px;
+	width: 200px;
+	outline: none;
+}
+
+    </style>
+    <title>时间插件</title>
+</head>
+<body>
+	<input class="text"/>
+
+	<input class="text" value="2016/11/16"/>
+	<script src="/core/require/2.1/require.js"></script>
+	<script src="/app.js"></script>
+	<script>
+		require(['time/calendar/calendar'], function(popover) {
+			 
+
+
+			
+
+		   
+
+		  //   $('#text1').time({
+		  //   	zIndex: 999,
+				// format: 'yyyy/mm/dd',
+		  //       onSelected: function (view, date, data) {
+		  //           console.log('event: onSelected')
+		  //       },
+		  //       onClose: function (view, date, data) {
+		  //           console.log('event: onClose')
+		  //           console.log('view:' + view)
+		  //           console.log('date:' + date)
+		  //           console.log('data:' + (data || 'None'));
+		  //       }
+		  //   });
+
+		    $('.text').calendarTime({
+				format: 'yyyy/mm/dd',
+				startWeek: 1,
+				data: [{date: '2016/11/4', value: '面试'}],
+		        onSelected: function (view, date, data) {
+		            
+		        },
+		        onClose: function (view, date, data) {
+		        	alert(date);
+		            console.log('event: onClose')
+		            console.log('view:' + view)
+		            console.log('date:' + date)
+		            console.log('data:' + (data || 'None'));
+		        }
+		    });
+
+		});
+	</script>
+</body>
+</html>
