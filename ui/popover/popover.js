@@ -24,6 +24,7 @@ define(function(require, exports, module) {
 	};
 
 	var popover = function(selectol, options) {
+
 		var _this = $(selectol),
 			position = coordinate(_this),
 			opt = $.extend(defaults, options),
@@ -77,8 +78,13 @@ define(function(require, exports, module) {
 			})
 		}
 
+		
+
 		this.selectol = slef;
+
+		
 	}
+
 
 	// 关闭弹出层
 	popover.prototype.close = function() {
@@ -117,6 +123,7 @@ define(function(require, exports, module) {
 			$(item).on('click.ui-popover', function() {
 				var _this = $(this);
 				if (_this.attr('ispopover') == 'false') {
+
 					pop[index] = new popover(_this, options);
 					_this.attr('ispopover', 'true');
 					return
@@ -127,4 +134,23 @@ define(function(require, exports, module) {
 			})
 		})
 	}
+
+
+	var p = function(selectol) {
+		if (this instanceof p) {
+			this.selectol = selectol;
+		} else {
+			return new p(selectol)
+		}
+	}
+
+	p.prototype.show = function() {
+		$(this.selectol).css('background', ' #ccc');
+		return this;
+	}
+	p.prototype.hide = function() {
+		$(this.selectol).css('border', '2px solid #ddd')
+	}
+
+	//p('body').show().hide();
 })
