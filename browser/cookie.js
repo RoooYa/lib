@@ -10,9 +10,9 @@
  * 
  */
 
-var document = window.document;
+var document = window.document
 
-var trim = function(s) {
+var trim = function (s) {
     if (typeof s !== 'string') {
         throw 'trim need a string as parameter';
     }
@@ -20,12 +20,12 @@ var trim = function(s) {
         i = 0,
         j = len - 1,
         re = /(\u3000|\s|\t|\u00A0)/;
-    while (i < len && re.test(s.charAt(i))) ++i;
-    while (j >= 0 && re.test(s.charAt(j))) --j;
+    while (i < len && re.test(s.charAt(i)))++i;
+    while (j >= 0 && re.test(s.charAt(j)))--j;
     return s.substring(i, j + 1);
 };
 
-var copy = function(o) {
+var copy = function (o) {
     var d = {}
     for (var k in o)
         if (o.hasOwnProperty(k)) d[k] = o[k]
@@ -39,24 +39,24 @@ var copy = function(o) {
  * @param {String} value (Optional) String to set cookie value.
  * @param {Object} options (Optional) Set the cooke native options, (path domain, secure, expires)
  */
-var cookie = function(name, value, options) {
-    options = options || {};
+var cookie = function (name, value, options) {
+    options = options || {}
     // write
     if (value !== undefined) {
-        options = copy(options);
+        options = copy(options)
         if (value === null) {
-            value = '';
-            options.expires = -1;
+            value = ''
+            options.expires = -1
         }
         if (typeof options.expires === 'number') {
             var days = options.expires,
                 t = options.expires = new Date();
             t.setTime(t.getTime() + days * 864e+5); // 24 * 60 * 60 * 1000
         }
-        var encode = function(s) {
+        var encode = function (s) {
             try {
                 return options.raw ? s : encodeURIComponent(s)
-            } catch (e) {}
+            } catch (e) { }
             return s
         }
         return (document.cookie = [
@@ -65,33 +65,33 @@ var cookie = function(name, value, options) {
             options.path ? '; path=' + options.path : '',
             options.domain ? '; domain=' + options.domain : '',
             options.secure ? '; secure' : ''
-        ].join(''));
+        ].join(''))
     }
     // read
     else {
         var value = null,
             cookie = document.cookie,
-            decode = function(s) {
+            decode = function (s) {
                 return options.raw ? s : decodeURIComponent(s)
             },
             cookies = cookie ? cookie.split('; ') : []
         for (var i = -1, l = cookies.length, c = name.length + 1; ++i < l;) {
-            cookie = trim(cookies[i]);
+            cookie = trim(cookies[i])
             if (cookie.substring(0, c) === (name + '=')) {
-                value = decode(cookie.substring(c));
-                break;
+                value = decode(cookie.substring(c))
+                break
             }
         }
-        return value;
+        return value
     }
 };
 
-cookie.set = function(k, v, opts) {
+cookie.set = function (k, v, opts) {
     return cookie(k, v, opts)
-};
+}
 
-cookie.get = function(k) {
+cookie.get = function (k) {
     return cookie(k)
-};
+}
 
 export default cookie

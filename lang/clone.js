@@ -13,16 +13,16 @@
  *
  */
 
- import getType from './getType.js'
+import getType from './getType.js'
 
- function clone(value) {
- 	let type = getType(value)
+function clone(value) {
+	let type = getType(value)
 
- 	if (type === 'object') return {...value}
+	if (type === 'object') return { ...value }
 
- 	if (type === 'array') return [...value]
- 	
- 	return value
- }
+	if (type === 'array') return [...value]
 
- export default clone
+	return value
+}
+
+export default clone
